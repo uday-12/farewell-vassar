@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Farewell Uday</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        background: black;
+        color: #00ff41;
+        font-family: "Courier New", monospace;
+        overflow: hidden;
+    }
+
+    #terminal {
+        height: 100vh;
+        padding: 20px;
+        overflow: hidden;
+        font-size: 16px;
+        line-height: 1.35;
+        text-shadow: 0 0 5px #00ff41;
+    }
+
+    .line {
+        white-space: nowrap;
+    }
+
+    .warning {
+        color: #ffff00;
+    }
+
+    .error {
+        color: #ff3333;
+    }
+
+    .success {
+        color: #00ff41;
+    }
+
+    /* Final screen */
+
+    #final {
+        display: none;
+        position: fixed;
+        inset: 0;
+
+        background:
+            radial-gradient(
+                circle,
+                #062b12 0%,
+                #001407 35%,
+                #000000 75%
+            );
+
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    #final h1 {
+        font-size: 75px;
+        margin: 0;
+
+        color: #00ff41;
+
+        text-shadow:
+            0 0 10px #00ff41,
+            0 0 30px #00ff41,
+            0 0 60px #00ff41;
+
+        animation: glow 2s infinite alternate;
+    }
+
+    #final h2 {
+        font-size: 45px;
+        margin-top: 25px;
+
+        color: white;
+
+        text-shadow:
+            0 0 10px white,
+            0 0 30px white;
+    }
+
+    #final p {
+        font-size: 30px;
+        margin-top: 40px;
+
+        color: #00ff41;
+
+        text-shadow: 0 0 15px #00ff41;
+    }
+
+    @keyframes glow {
+        from {
+            opacity: 0.7;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div id="terminal"></div>
+
+<div id="final">
+
+    <h1>HAPPY FAREWELL</h1>
+
+    <h2>UDAY KUMAR DUMMA</h2>
+
+    <p>Thank You Vassar, From Uday Dumma ❤️</p>
+
+</div>
+
+
+<script>
+
+const terminal = document.getElementById("terminal");
+const finalScreen = document.getElementById("final");
+
+
+// ------------------------------------
+// Random data
+// ------------------------------------
+
+const names = [
+    "VASSAR_CORE",
+    "UDAY_DUMMA",
+    "PROJECT_SERVER",
+    "DATABASE_NODE",
+    "ANGULAR_ENGINE",
+    "SPRING_BOOT",
+    "JAVA_RUNTIME",
+    "API_GATEWAY",
+    "AUTH_SERVICE",
+    "PRODUCTION_SERVER",
+    "MEMORY_CLUSTER",
+    "DEVOPS_NODE"
+];
+
+const actions = [
+    "Initializing connection",
+    "Scanning network",
+    "Analyzing packets",
+    "Accessing server",
+    "Decrypting data",
+    "Loading modules",
+    "Synchronizing database",
+    "Checking dependencies",
+    "Compiling source",
+    "Executing command",
+    "Reading system logs",
+    "Generating secure token",
+    "Establishing connection",
+    "Validating credentials",
+    "Processing request",
+    "Querying database",
+    "Fetching records",
+    "Analyzing system"
+];
+
+
+function randomHex() {
+
+    return Math.random()
+        .toString(16)
+        .substring(2, 10)
+        .toUpperCase();
+
+}
+
+
+function randomIP() {
+
+    return (
+        Math.floor(Math.random() * 255) +
+        "." +
+        Math.floor(Math.random() * 255) +
+        "." +
+        Math.floor(Math.random() * 255) +
+        "." +
+        Math.floor(Math.random() * 255)
+    );
+
+}
+
+
+function randomNumber() {
+
+    return Math.floor(Math.random() * 999999);
+
+}
+
+
+// ------------------------------------
+// Generate random hacker line
+// ------------------------------------
+
+function generateLine() {
+
+    const type = Math.floor(Math.random() * 9);
+
+    switch (type) {
+
+        case 0:
+
+            return (
+                `[SYSTEM] ` +
+                actions[Math.floor(Math.random() * actions.length)] +
+                ` ${names[Math.floor(Math.random() * names.length)]}`
+            );
+
+
+        case 1:
+
+            return (
+                `PACKET_${randomNumber()} ` +
+                `SRC=${randomIP()} ` +
+                `DST=${randomIP()} ` +
+                `STATUS=ENCRYPTED`
+            );
+
+
+        case 2:
+
+            return (
+                `0x${randomHex()} ` +
+                `0x${randomHex()} ` +
+                `0x${randomHex()} ` +
+                `0x${randomHex()}`
+            );
+
+
+        case 3:
+
+            return (
+                `PROCESS_${randomNumber()} ` +
+                `PID=${randomNumber()} ` +
+                `CPU=${Math.floor(Math.random() * 99)}% ` +
+                `MEM=${Math.floor(Math.random() * 90)}%`
+            );
+
+
+        case 4:
+
+            return (
+                `>>> Searching NODE_${randomHex()}... ` +
+                `ACCESS GRANTED`
+            );
+
+
+        case 5:
+
+            return (
+                `DATABASE_QUERY_${randomNumber()} ` +
+                `ROWS=${randomNumber()} ` +
+                `TIME=${Math.floor(Math.random() * 500)}ms`
+            );
+
+
+        case 6:
+
+            return (
+                `SECURITY_LAYER_${randomNumber()} ` +
+                `BYPASS_SEQUENCE :: ` +
+                `${randomHex()}-${randomHex()}`
+            );
+
+
+        case 7:
+
+            return (
+                `UPLOADING DATA BLOCK ` +
+                `[${randomNumber()}] ` +
+                `${Math.floor(Math.random() * 100)}%`
+            );
+
+
+        default:
+
+            return (
+                `SERVER_RESPONSE ` +
+                `CODE=${Math.floor(Math.random() * 500)} ` +
+                `TOKEN=${randomHex()}`
+            );
+
+    }
+
+}
+
+
+// ------------------------------------
+// Intro
+// ------------------------------------
+
+const intro = [
+
+    "BOOTING VASSAR SYSTEM...",
+    "Initializing terminal...",
+    "Loading developer profile...",
+    "Connecting to Vassar mainframe...",
+    "Establishing secure channel...",
+    "Access granted...",
+    "",
+    "WARNING: Unauthorized farewell sequence detected...",
+    "IDENTITY: UDAY KUMAR DUMMA",
+    "",
+    "Starting farewell protocol...",
+    ""
+
+];
+
+let introIndex = 0;
+
+
+function showIntro() {
+
+    if (introIndex < intro.length) {
+
+        addLine(
+            intro[introIndex],
+            intro[introIndex].includes("WARNING")
+        );
+
+        introIndex++;
+
+        setTimeout(showIntro, 150);
+
+    } else {
+
+        startHacking();
+
+    }
+
+}
+
+
+// ------------------------------------
+// IMPORTANT PART
+// Continuously scroll terminal
+// ------------------------------------
+
+function addLine(text, warning = false) {
+
+    const line = document.createElement("div");
+
+    line.className = "line";
+
+    if (warning) {
+
+        line.classList.add("warning");
+
+    }
+
+    line.textContent = text;
+
+    terminal.appendChild(line);
+
+
+    // Automatically scroll to bottom
+
+    terminal.scrollTop = terminal.scrollHeight;
+
+
+    // Keep only recent lines
+    // This makes the terminal continuously move
+
+    while (terminal.children.length > 45) {
+
+        terminal.removeChild(terminal.firstChild);
+
+    }
+
+}
+
+
+// ------------------------------------
+// Generate 400 lines
+// ------------------------------------
+
+let lineCount = 0;
+
+function startHacking() {
+
+    if (lineCount < 400) {
+
+        let line = generateLine();
+
+        let warning = lineCount % 43 === 0;
+
+        addLine(line, warning);
+
+        lineCount++;
+
+
+        // Fast terminal typing
+
+        setTimeout(
+            startHacking,
+            Math.random() * 35 + 15
+        );
+
+    } else {
+
+        finishSequence();
+
+    }
+
+}
+
+
+// ------------------------------------
+// Final sequence
+// ------------------------------------
+
+function finishSequence() {
+
+    terminal.innerHTML = "";
+
+    const ending = [
+
+        "",
+        "",
+        "SYSTEM SHUTDOWN INITIATED...",
+        "",
+        "Saving memories...",
+        "Saving friendships...",
+        "Saving late night deployments...",
+        "Saving countless bugs...",
+        "Saving countless cups of coffee...",
+        "",
+        "All memories successfully archived.",
+        "",
+        "Connection closing...",
+        "",
+        "3",
+        "2",
+        "1",
+        "",
+        "GOODBYE VASSAR..."
+
+    ];
+
+    let index = 0;
+
+
+    function showEnding() {
+
+        if (index < ending.length) {
+
+            addLine(
+                ending[index],
+                ending[index] === "GOODBYE VASSAR..."
+            );
+
+            index++;
+
+            setTimeout(showEnding, 600);
+
+        } else {
+
+            setTimeout(() => {
+
+                terminal.style.display = "none";
+
+                finalScreen.style.display = "flex";
+
+            }, 2000);
+
+        }
+
+    }
+
+
+    showEnding();
+
+}
+
+
+// Start
+
+showIntro();
+
+</script>
+
+</body>
+</html>
