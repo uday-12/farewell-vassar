@@ -1,439 +1,742 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Farewell Uday Dumma</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Farewell - Uday Dumma</title>
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+    <style>
 
-* {
-    box-sizing: border-box;
-}
+        * {
+            box-sizing: border-box;
+        }
 
-html,
-body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    overflow: hidden;
-}
+        html,
+        body {
+            margin: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            overflow: hidden;
+        }
 
-body {
-    font-family: "Courier New", monospace;
-    color: #00ff41;
-}
+        body {
+            font-family: "Courier New", monospace;
+            color: #00ff41;
+        }
 
 
-/* =========================================================
-   TERMINAL
-========================================================= */
+        /* =====================================================
+           TERMINAL
+        ===================================================== */
 
-#terminal {
-    position: fixed;
-    inset: 0;
+        #terminal {
+            position: fixed;
+            inset: 0;
 
-    padding: 20px 30px;
+            padding: 22px 28px;
 
-    background: #000;
+            background: #000;
 
-    overflow: hidden;
+            overflow: hidden;
 
-    font-size: 16px;
-    line-height: 1.35;
+            font-size: 16px;
+            line-height: 1.35;
 
-    text-shadow:
-        0 0 4px #00ff41,
-        0 0 8px rgba(0,255,65,0.3);
-}
+            text-shadow:
+                0 0 4px #00ff41,
+                0 0 8px rgba(0, 255, 65, 0.3);
+        }
 
 
-.terminal-line {
-    white-space: nowrap;
-    min-height: 21px;
-}
+        .terminal-line {
+            white-space: nowrap;
+            min-height: 21px;
+        }
 
 
-.warning {
-    color: #ffff00;
+        .warning {
+            color: #ffff00;
 
-    text-shadow:
-        0 0 6px #ffff00;
-}
+            text-shadow:
+                0 0 5px #ffff00;
+        }
 
 
-.success {
-    color: #00ff41;
-}
+        .success {
+            color: #00ff41;
+        }
 
 
-.error {
-    color: #ff3333;
+        /* =====================================================
+           FINAL SCREEN
+        ===================================================== */
 
-    text-shadow:
-        0 0 6px #ff3333;
-}
+        #finalScreen {
 
+            display: none;
 
-/* =========================================================
-   FINAL SCREEN
-========================================================= */
+            position: fixed;
 
-#finalScreen {
-    display: none;
+            inset: 0;
 
-    position: fixed;
+            background:
+                radial-gradient(
+                    circle at 75% 50%,
+                    #001a08 0%,
+                    #000900 30%,
+                    #000000 70%
+                );
 
-    inset: 0;
+            overflow: hidden;
+        }
 
-    background:
-        radial-gradient(
-            circle at 75% 50%,
-            #002b0d 0%,
-            #001406 20%,
-            #000 65%
-        );
 
-    overflow: hidden;
-}
+        /* Scan lines */
 
+        #finalScreen::after {
 
-/* =========================================================
-   THANK YOU
-========================================================= */
+            content: "";
 
-#thankYou {
-    position: absolute;
+            position: absolute;
 
-    left: 6%;
-    top: 18%;
+            inset: 0;
 
-    z-index: 20;
+            pointer-events: none;
 
-    opacity: 0;
+            z-index: 100;
 
-    transform: translateY(30px);
+            background:
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(0,255,65,0.025) 0px,
+                    rgba(0,255,65,0.025) 1px,
+                    transparent 1px,
+                    transparent 4px
+                );
+        }
 
-    transition:
-        opacity 2s ease,
-        transform 2s ease;
-}
 
+        /* =====================================================
+           THANK YOU
+        ===================================================== */
 
-#thankYou.show {
-    opacity: 1;
+        #thankYou {
 
-    transform: translateY(0);
-}
+            position: absolute;
 
+            left: 6%;
+            top: 20%;
 
-#thankYou h1 {
-    margin: 0;
+            z-index: 20;
 
-    font-size: clamp(45px, 5vw, 78px);
+            opacity: 0;
 
-    color: #00ff41;
+            transform: translateY(30px);
 
-    letter-spacing: 2px;
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
 
-    text-shadow:
-        0 0 8px #00ff41,
-        0 0 18px #00ff41,
-        0 0 35px #00ff41,
-        0 0 60px rgba(0,255,65,0.7);
-}
 
+        #thankYou.show {
 
-#thankYou h2 {
-    display: flex;
+            opacity: 1;
 
-    align-items: center;
+            transform: translateY(0);
+        }
 
-    margin-top: 28px;
 
-    font-size: clamp(27px, 3vw, 45px);
+        #thankYou h1 {
 
-    color: white;
+            margin: 0;
 
-    letter-spacing: 2px;
+            font-size: clamp(48px, 5vw, 78px);
 
-    text-shadow:
-        0 0 8px white,
-        0 0 18px rgba(255,255,255,0.8);
-}
+            color: #00ff41;
 
+            letter-spacing: 3px;
 
-/* =========================================================
-   RED HEART
-========================================================= */
+            text-shadow:
+                0 0 7px #00ff41,
+                0 0 18px #00ff41,
+                0 0 35px #00ff41;
+        }
 
-.heart {
-    display: inline-block;
 
-    margin-left: 18px;
+        #thankYou h2 {
 
-    color: #ff1744;
+            display: flex;
 
-    font-family:
-        Arial,
-        sans-serif;
+            align-items: center;
 
-    font-size: 1.15em;
+            margin-top: 30px;
 
-    line-height: 1;
+            font-size: clamp(28px, 3vw, 45px);
 
-    text-shadow:
-        0 0 5px #ff1744,
-        0 0 10px #ff1744,
-        0 0 20px #ff1744,
-        0 0 40px rgba(255,23,68,0.8);
+            color: white;
 
-    animation:
-        heartbeat 1.3s infinite;
-}
+            letter-spacing: 2px;
 
+            text-shadow:
+                0 0 7px white,
+                0 0 18px rgba(255,255,255,0.8);
+        }
 
-@keyframes heartbeat {
 
-    0% {
-        transform: scale(1);
-    }
+        /* =====================================================
+           RED HEART
+        ===================================================== */
 
-    10% {
-        transform: scale(1.22);
-    }
+        .heart {
 
-    20% {
-        transform: scale(1);
-    }
+            display: inline-block;
 
-    30% {
-        transform: scale(1.18);
-    }
+            margin-left: 18px;
 
-    45% {
-        transform: scale(1);
-    }
+            color: #ff1744;
 
-    100% {
-        transform: scale(1);
-    }
+            font-family:
+                Arial,
+                sans-serif;
 
-}
+            font-size: 48px;
 
+            line-height: 1;
 
-/* =========================================================
-   PHOTO
-========================================================= */
+            text-shadow:
+                0 0 5px #ff1744,
+                0 0 12px #ff1744,
+                0 0 25px #ff1744,
+                0 0 40px rgba(255,23,68,0.8);
 
-#udayPhoto {
-    position: absolute;
+            animation:
+                heartbeat 1.3s infinite;
+        }
 
-    z-index: 10;
 
-    right: 5%;
+        @keyframes heartbeat {
 
-    bottom: 4%;
+            0% {
+                transform: scale(1);
+            }
 
-    width: min(430px, 32vw);
+            15% {
+                transform: scale(1.25);
+            }
 
-    max-height: 78vh;
+            30% {
+                transform: scale(1);
+            }
 
-    object-fit: contain;
+            45% {
+                transform: scale(1.18);
+            }
 
-    border-radius: 10px;
+            60% {
+                transform: scale(1);
+            }
 
-    opacity: 0;
+            100% {
+                transform: scale(1);
+            }
+        }
 
-    transform:
-        translateY(80px)
-        scale(0.95);
 
-    border:
-        1px solid rgba(0,255,65,0.6);
+        /* =====================================================
+           PHOTO
+        ===================================================== */
 
-    box-shadow:
-        0 0 10px rgba(0,255,65,0.5),
-        0 0 30px rgba(0,255,65,0.35),
-        0 0 60px rgba(0,255,65,0.15);
+        #photoContainer {
 
-    transition:
-        opacity 2.5s ease,
-        transform 2.5s ease;
-}
+            position: absolute;
 
+            right: 5%;
+            bottom: 7%;
 
-#udayPhoto.show {
-    opacity: 1;
+            width: min(440px, 32vw);
 
-    transform:
-        translateY(0)
-        scale(1);
-}
+            z-index: 10;
 
+            opacity: 0;
 
-/* =========================================================
-   FINAL STATUS
-========================================================= */
+            transform:
+                translateY(100px)
+                scale(0.95);
 
-#finalMessage {
-    position: absolute;
+            transition:
+                opacity 2.5s ease,
+                transform 2.5s ease;
+        }
 
-    z-index: 20;
 
-    left: 6%;
-    bottom: 14%;
+        #photoContainer.show {
 
-    font-size: clamp(18px, 1.6vw, 25px);
+            opacity: 1;
 
-    line-height: 2;
+            transform:
+                translateY(0)
+                scale(1);
+        }
 
-    opacity: 0;
 
-    transform: translateY(20px);
+        #udayPhoto {
 
-    transition:
-        opacity 2s ease,
-        transform 2s ease;
+            display: block;
 
-    text-shadow:
-        0 0 6px #00ff41,
-        0 0 15px rgba(0,255,65,0.5);
-}
+            width: 100%;
 
+            height: auto;
 
-#finalMessage.show {
-    opacity: 1;
+            max-height: 70vh;
 
-    transform: translateY(0);
-}
+            object-fit: contain;
 
+            border-radius: 10px;
 
-/* =========================================================
-   BLINKING CURSOR
-========================================================= */
+            box-shadow:
+                0 0 8px #00ff41,
+                0 0 20px rgba(0,255,65,0.6),
+                0 0 45px rgba(0,255,65,0.25);
+        }
 
-.cursor {
-    display: inline-block;
 
-    width: 10px;
+        /* =====================================================
+           FINAL STATUS
+        ===================================================== */
 
-    height: 20px;
+        #finalMessage {
 
-    margin-left: 5px;
+            position: absolute;
 
-    background: #00ff41;
+            left: 6%;
+            bottom: 13%;
 
-    box-shadow:
-        0 0 8px #00ff41;
+            z-index: 20;
 
-    vertical-align: middle;
+            opacity: 0;
 
-    animation:
-        blink 0.7s infinite;
-}
+            transform: translateY(20px);
 
+            font-size: clamp(18px, 1.6vw, 25px);
 
-@keyframes blink {
+            line-height: 1.9;
 
-    0%,
-    45% {
-        opacity: 1;
-    }
+            text-shadow:
+                0 0 5px #00ff41,
+                0 0 12px rgba(0,255,65,0.5);
 
-    46%,
-    100% {
-        opacity: 0;
-    }
+            transition:
+                opacity 2s ease,
+                transform 2s ease;
+        }
 
-}
 
+        #finalMessage.show {
 
-/* =========================================================
-   CRT SCAN LINES
-========================================================= */
+            opacity: 1;
 
-#finalScreen::after {
-    content: "";
+            transform: translateY(0);
+        }
 
-    position: absolute;
 
-    inset: 0;
+        /* =====================================================
+           BLINKING CURSOR
+        ===================================================== */
 
-    z-index: 50;
+        .cursor {
 
-    pointer-events: none;
+            display: inline-block;
 
-    background:
-        repeating-linear-gradient(
-            0deg,
-            rgba(0,255,65,0.018) 0px,
-            rgba(0,255,65,0.018) 1px,
-            transparent 1px,
-            transparent 4px
-        );
-}
+            width: 11px;
+            height: 22px;
 
+            margin-left: 5px;
 
-/* =========================================================
-   MOBILE / SMALL SCREEN
-========================================================= */
+            vertical-align: middle;
 
-@media (max-width: 900px) {
+            background: #00ff41;
 
-    #thankYou {
-        left: 5%;
-        top: 8%;
-    }
+            box-shadow:
+                0 0 8px #00ff41;
 
-    #udayPhoto {
-        right: 50%;
+            animation:
+                cursorBlink 0.7s infinite;
+        }
 
-        transform:
-            translate(50%, 80px)
-            scale(0.95);
 
-        width: 340px;
+        @keyframes cursorBlink {
 
-        max-width: 80vw;
-    }
+            0%,
+            45% {
+                opacity: 1;
+            }
 
-    #udayPhoto.show {
-        transform:
-            translate(50%, 0)
-            scale(1);
-    }
+            46%,
+            100% {
+                opacity: 0;
+            }
+        }
 
-    #finalMessage {
-        left: 5%;
-        bottom: 5%;
-    }
 
-}
+        /* =====================================================
+           MOBILE ONLY
+           
+           Desktop CSS ABOVE is NOT changed.
+        ===================================================== */
 
-</style>
+        @media (max-width: 900px) {
+
+            html,
+            body {
+                width: 100%;
+                max-width: 100%;
+                overflow: hidden;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE TERMINAL
+            --------------------------------------------- */
+
+            #terminal {
+
+                width: 100vw;
+                max-width: 100vw;
+
+                padding: 12px 14px;
+
+                font-size: 11px;
+
+                line-height: 1.35;
+
+                overflow: hidden;
+            }
+
+
+            .terminal-line {
+
+                max-width: 100%;
+
+                overflow: hidden;
+
+                text-overflow: clip;
+
+                white-space: nowrap;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE FINAL SCREEN
+            --------------------------------------------- */
+
+            #finalScreen {
+
+                width: 100vw;
+
+                max-width: 100vw;
+
+                height: 100vh;
+
+                overflow: hidden;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE THANK YOU
+            --------------------------------------------- */
+
+            #thankYou {
+
+                left: 0;
+
+                right: 0;
+
+                top: 7%;
+
+                width: 100%;
+
+                padding: 0 20px;
+
+                text-align: center;
+
+                transform:
+                    translateY(30px);
+            }
+
+
+            #thankYou.show {
+
+                transform:
+                    translateY(0);
+            }
+
+
+            #thankYou h1 {
+
+                margin: 0;
+
+                width: 100%;
+
+                font-size:
+                    clamp(32px, 9vw, 52px);
+
+                line-height: 1.15;
+
+                letter-spacing: 1px;
+
+                white-space: normal;
+            }
+
+
+            #thankYou h2 {
+
+                display: flex;
+
+                justify-content: center;
+
+                align-items: center;
+
+                flex-wrap: nowrap;
+
+                width: 100%;
+
+                margin-top: 18px;
+
+                font-size:
+                    clamp(21px, 6vw, 34px);
+
+                line-height: 1.2;
+
+                letter-spacing: 0;
+
+                white-space: nowrap;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE HEART
+            --------------------------------------------- */
+
+            .heart {
+
+                flex-shrink: 0;
+
+                margin-left: 10px;
+
+                font-size:
+                    clamp(30px, 8vw, 42px);
+
+                line-height: 1;
+
+                text-shadow:
+                    0 0 5px #ff1744,
+                    0 0 12px #ff1744,
+                    0 0 22px #ff1744;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE PHOTO
+
+               IMPORTANT:
+               Do NOT use right: 50% with translate
+               because that caused the image to move
+               outside the screen.
+            --------------------------------------------- */
+
+            #photoContainer {
+
+                left: 50%;
+
+                right: auto;
+
+                bottom: -500px;
+
+                width: min(
+                    72vw,
+                    330px
+                );
+
+                max-width: 330px;
+
+                height: auto;
+
+                transform:
+                    translateX(-50%)
+                    translateY(100px)
+                    scale(0.95);
+            }
+
+
+            #photoContainer.show {
+
+                left: 50%;
+
+                right: auto;
+
+                bottom: 8%;
+
+                transform:
+                    translateX(-50%)
+                    translateY(0)
+                    scale(1);
+            }
+
+
+            #udayPhoto {
+
+                width: 100%;
+
+                max-width: 100%;
+
+                max-height: 48vh;
+
+                height: auto;
+
+                object-fit: contain;
+
+                border-radius: 8px;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE FINAL MESSAGE
+            --------------------------------------------- */
+
+            #finalMessage {
+
+                left: 0;
+
+                right: 0;
+
+                bottom: 3%;
+
+                width: 100%;
+
+                padding:
+                    0 15px;
+
+                text-align: center;
+
+                font-size:
+                    clamp(12px, 3.5vw, 18px);
+
+                line-height: 1.7;
+
+                white-space: normal;
+
+                overflow: hidden;
+            }
+
+
+            /* ---------------------------------------------
+               MOBILE CURSOR
+            --------------------------------------------- */
+
+            .cursor {
+
+                width: 8px;
+
+                height: 15px;
+
+                margin-left: 3px;
+            }
+
+        }
+
+
+        /* =====================================================
+           VERY SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 400px) {
+
+            #thankYou {
+
+                top: 5%;
+
+                padding:
+                    0 12px;
+            }
+
+
+            #thankYou h1 {
+
+                font-size: 30px;
+            }
+
+
+            #thankYou h2 {
+
+                font-size: 20px;
+
+                margin-top: 12px;
+            }
+
+
+            .heart {
+
+                font-size: 28px;
+
+                margin-left: 7px;
+            }
+
+
+            #photoContainer {
+
+                width: 65vw;
+
+                max-width: 260px;
+            }
+
+
+            #photoContainer.show {
+
+                bottom: 10%;
+            }
+
+
+            #udayPhoto {
+
+                max-height: 42vh;
+            }
+
+
+            #finalMessage {
+
+                bottom: 2%;
+
+                font-size: 11px;
+
+                line-height: 1.5;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
 <body>
 
 
-<!-- ======================================================
-     HACKER TERMINAL
-====================================================== -->
+<!-- =====================================================
+     TERMINAL
+===================================================== -->
 
 <div id="terminal"></div>
 
 
-<!-- ======================================================
-     FINAL FAREWELL SCREEN
-====================================================== -->
+
+<!-- =====================================================
+     FINAL SCREEN
+===================================================== -->
 
 <div id="finalScreen">
 
@@ -446,7 +749,9 @@ body {
             Thank You Vassar
         </h1>
 
+
         <h2>
+
             From Uday Dumma
 
             <span class="heart">
@@ -459,13 +764,17 @@ body {
 
 
 
-    <!-- UDAY PHOTO -->
+    <!-- PHOTO -->
 
-    <img
-        id="udayPhoto"
-        src="./uday_profile.png"
-        alt="Uday Dumma"
-    >
+    <div id="photoContainer">
+
+        <img
+            id="udayPhoto"
+            src="./uday_profile.png"
+            alt="Uday Dumma"
+        >
+
+    </div>
 
 
 
@@ -494,8 +803,9 @@ body {
 
 <script>
 
+
 /* =========================================================
-   HTML ELEMENTS
+   ELEMENTS
 ========================================================= */
 
 const terminal =
@@ -507,21 +817,25 @@ const finalScreen =
 const thankYou =
     document.getElementById("thankYou");
 
-const finalMessage =
-    document.getElementById("finalMessage");
+const photoContainer =
+    document.getElementById("photoContainer");
 
 const udayPhoto =
     document.getElementById("udayPhoto");
 
+const finalMessage =
+    document.getElementById("finalMessage");
+
+
 
 /* =========================================================
-   VERIFY PHOTO
+   PHOTO CHECK
 ========================================================= */
 
 udayPhoto.onload = function () {
 
     console.log(
-        "Uday photo loaded successfully."
+        "Uday photo loaded successfully!"
     );
 
 };
@@ -536,122 +850,67 @@ udayPhoto.onerror = function () {
 };
 
 
+
 /* =========================================================
-   SYSTEM NAMES
+   HACKER DATA
 ========================================================= */
 
 const systems = [
 
     "VASSAR_CORE",
-
     "JAVA_RUNTIME",
-
     "SPRING_BOOT",
-
     "ANGULAR_ENGINE",
-
     "DATABASE_NODE",
-
     "API_GATEWAY",
-
     "AUTH_SERVICE",
-
     "PROJECT_SERVER",
-
     "MEMORY_CLUSTER",
-
     "DEVOPS_NODE",
-
     "PRODUCTION_SERVER",
-
-    "USER_MANAGEMENT",
-
-    "CLAIMS_SERVICE",
-
-    "NOTIFICATION_ENGINE",
-
     "SECURITY_LAYER",
-
-    "MEMORY_ARCHIVE",
-
-    "SOURCE_REPOSITORY"
+    "USER_SERVICE",
+    "NOTIFICATION_ENGINE"
 
 ];
 
-
-/* =========================================================
-   ACTIONS
-========================================================= */
 
 const actions = [
 
     "Initializing connection",
-
     "Scanning network",
-
     "Analyzing packets",
-
     "Accessing server",
-
     "Decrypting data",
-
     "Loading modules",
-
     "Synchronizing database",
-
     "Checking dependencies",
-
     "Compiling source",
-
     "Executing command",
-
     "Reading system logs",
-
     "Generating secure token",
-
     "Establishing connection",
-
     "Validating credentials",
-
     "Processing request",
-
     "Querying database",
-
     "Fetching records",
-
     "Analyzing system",
-
     "Loading memory blocks",
-
     "Archiving project data",
-
     "Scanning project files",
-
     "Checking deployment status",
-
     "Synchronizing services",
-
     "Loading environment variables",
-
     "Checking API connections",
-
     "Validating database connection",
-
-    "Preparing memory archive",
-
-    "Reading application logs",
-
-    "Synchronizing memories",
-
-    "Loading friendship module",
-
-    "Compiling achievements"
+    "Preparing memory archive"
 
 ];
 
 
+
 /* =========================================================
-   RANDOM FUNCTIONS
+   RANDOM HELPERS
 ========================================================= */
 
 function randomHex() {
@@ -659,7 +918,7 @@ function randomHex() {
     return Math
         .random()
         .toString(16)
-        .substring(2,10)
+        .substring(2, 10)
         .toUpperCase();
 
 }
@@ -687,23 +946,18 @@ function randomIP() {
 
     return (
 
-        Math.floor(Math.random() * 255)
-
-        + "." +
-
-        Math.floor(Math.random() * 255)
-
-        + "." +
-
-        Math.floor(Math.random() * 255)
-
-        + "." +
-
+        Math.floor(Math.random() * 255) +
+        "." +
+        Math.floor(Math.random() * 255) +
+        "." +
+        Math.floor(Math.random() * 255) +
+        "." +
         Math.floor(Math.random() * 255)
 
     );
 
 }
+
 
 
 /* =========================================================
@@ -713,32 +967,22 @@ function randomIP() {
 function generateLine() {
 
     const type =
-        Math.floor(
-            Math.random() * 10
-        );
+        Math.floor(Math.random() * 9);
 
-
-    /* SYSTEM */
 
     if (type === 0) {
 
         return {
 
             text:
-
                 "[SYSTEM] " +
-
                 actions[
                     Math.floor(
                         Math.random() *
                         actions.length
                     )
-                ]
-
-                + " "
-
-                +
-
+                ] +
+                " " +
                 systems[
                     Math.floor(
                         Math.random() *
@@ -746,299 +990,194 @@ function generateLine() {
                     )
                 ],
 
-            type: "normal"
+            className: ""
 
         };
 
     }
 
-
-    /* PACKET */
 
     if (type === 1) {
 
         return {
 
             text:
-
                 "PACKET_" +
-
                 randomNumber() +
-
                 " SRC=" +
-
                 randomIP() +
-
                 " DST=" +
-
                 randomIP() +
-
                 " STATUS=ENCRYPTED",
 
-            type: "normal"
+            className: ""
 
         };
 
     }
 
-
-    /* MEMORY */
 
     if (type === 2) {
 
         return {
 
             text:
-
-                "MEMORY "
-
-                + "0x" +
-
-                randomHex()
-
-                + " 0x" +
-
-                randomHex()
-
-                + " 0x" +
-
-                randomHex()
-
-                + " 0x" +
-
+                "MEMORY 0x" +
+                randomHex() +
+                " 0x" +
+                randomHex() +
+                " 0x" +
                 randomHex(),
 
-            type: "normal"
+            className: ""
 
         };
 
     }
 
-
-    /* PROCESS */
 
     if (type === 3) {
 
         return {
 
             text:
-
                 "PROCESS_" +
-
                 randomNumber() +
-
                 " PID=" +
-
                 randomNumber() +
-
                 " CPU=" +
-
                 randomPercentage() +
-
                 "% MEM=" +
-
                 randomPercentage() +
-
                 "% STATUS=RUNNING",
 
-            type: "normal"
+            className: ""
 
         };
 
     }
 
-
-    /* NODE */
 
     if (type === 4) {
 
         return {
 
             text:
-
                 ">>> SEARCHING NODE_" +
-
                 randomHex() +
-
                 " ... ACCESS GRANTED",
 
-            type: "success"
+            className:
+                "success"
 
         };
 
     }
 
-
-    /* DATABASE */
 
     if (type === 5) {
 
         return {
 
             text:
-
                 "DATABASE_QUERY_" +
-
                 randomNumber() +
-
                 " ROWS=" +
-
                 randomNumber() +
-
                 " TIME=" +
-
                 Math.floor(
                     Math.random() * 500
                 ) +
-
                 "ms",
 
-            type: "normal"
+            className: ""
 
         };
 
     }
 
-
-    /* SECURITY */
 
     if (type === 6) {
 
         return {
 
             text:
-
                 "SECURITY_LAYER_" +
-
                 randomNumber() +
-
                 " TOKEN=" +
-
                 randomHex() +
-
                 " STATUS=VERIFIED",
 
-            type: "warning"
+            className:
+                "warning"
 
         };
 
     }
 
-
-    /* MEMORY BLOCK */
 
     if (type === 7) {
 
         return {
 
             text:
-
-                "MEMORY_BLOCK_" +
-
-                randomNumber() +
-
-                " :: " +
-
-                randomHex() +
-
-                " :: ALLOCATED",
-
-            type: "normal"
-
-        };
-
-    }
-
-
-    /* API */
-
-    if (type === 8) {
-
-        return {
-
-            text:
-
                 "API_REQUEST_" +
-
                 randomNumber() +
-
                 " RESPONSE=200 LATENCY=" +
-
                 Math.floor(
                     Math.random() * 400
                 ) +
-
                 "ms",
 
-            type: "success"
+            className:
+                "success"
 
         };
 
     }
 
-
-    /* DEPLOYMENT */
 
     return {
 
         text:
-
             "DEPLOYMENT_NODE_" +
-
             randomNumber() +
-
             " BUILD=" +
-
             randomHex() +
-
             " STATUS=SUCCESS",
 
-        type: "success"
+        className:
+            "success"
 
     };
 
 }
 
 
+
 /* =========================================================
-   ADD LINE
+   ADD TERMINAL LINE
 ========================================================= */
 
 function addLine(
     text,
-    type = "normal"
+    className = ""
 ) {
 
     const line =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     line.className =
         "terminal-line";
 
 
-    if (type === "warning") {
+    if (className) {
 
         line.classList.add(
-            "warning"
-        );
-
-    }
-
-
-    if (type === "success") {
-
-        line.classList.add(
-            "success"
-        );
-
-    }
-
-
-    if (type === "error") {
-
-        line.classList.add(
-            "error"
+            className
         );
 
     }
@@ -1053,15 +1192,8 @@ function addLine(
     );
 
 
-    /*
-     * Remove old lines from top.
-     *
-     * This creates continuous
-     * hacker terminal scrolling.
-     */
-
     while (
-        terminal.children.length > 47
+        terminal.children.length > 45
     ) {
 
         terminal.removeChild(
@@ -1071,6 +1203,7 @@ function addLine(
     }
 
 }
+
 
 
 /* =========================================================
@@ -1087,55 +1220,47 @@ const intro = [
 
     "",
 
-    "SYSTEM BOOT: VASSAR FAREWELL PROTOCOL INITIATED...",
+    "BOOTING VASSAR CORE SYSTEM...",
 
-    "LOADING MODULES...",
+    "Initializing terminal...",
 
-    "CONNECTING TO VASSAR CORE NETWORK...",
+    "Loading developer profile...",
 
-    "CONNECTION ESTABLISHED.",
+    "Connecting to VASSAR CORE...",
+
+    "Establishing secure connection...",
+
+    "AUTHENTICATION SUCCESSFUL",
 
     "",
 
-    "AUTHENTICATION: UDAY_DUMMA ............ SUCCESS",
+    "USER: UDAY_DUMMA",
 
     "ACCESS LEVEL: DEVELOPER",
 
     "",
 
-    "SCANNING SYSTEM CONFIGURATION...",
+    "Scanning project memories...",
 
-    "SCAN COMPLETE -> 128 FILES FOUND",
+    "Scanning source repositories...",
 
-    "READING CONFIG: /etc/vassar/core.conf ... OK",
+    "Checking deployments...",
 
-    "READING CONFIG: /etc/vassar/db.conf ..... OK",
+    "Checking database connections...",
 
-    "READING CONFIG: /etc/vassar/cache.conf .. OK",
-
-    "",
-
-    "INITIALIZING MEMORY BANKS...",
-
-    "MEMORY BANK 0x01A3 -> READY",
-
-    "MEMORY BANK 0x02B7 -> READY",
-
-    "MEMORY BANK 0x03C9 -> READY",
-
-    "",
-
-    "NETWORK SCAN 192.168.1.0/24",
-
-    "SCANNING PROJECT MEMORIES...",
-
-    "SCANNING SOURCE REPOSITORIES...",
-
-    "SCANNING FRIENDSHIPS...",
+    "Checking application services...",
 
     "",
 
     "WARNING: FAREWELL SEQUENCE DETECTED...",
+
+    "",
+
+    "Preparing memory archive...",
+
+    "Preparing project archive...",
+
+    "Preparing friendship archive...",
 
     "",
 
@@ -1145,6 +1270,7 @@ const intro = [
 
 
 let introIndex = 0;
+
 
 
 function showIntro() {
@@ -1178,11 +1304,13 @@ function showIntro() {
 }
 
 
+
 /* =========================================================
    400 HACKER LINES
 ========================================================= */
 
 let lineCount = 0;
+
 
 
 function startHacking() {
@@ -1197,25 +1325,16 @@ function startHacking() {
 
         addLine(
             generated.text,
-            generated.type
+            generated.className
         );
 
 
         lineCount++;
 
 
-        /*
-         * Random speed creates
-         * realistic terminal effect.
-         */
-
-        const speed =
-            Math.random() * 25 + 12;
-
-
         setTimeout(
             startHacking,
-            speed
+            Math.random() * 25 + 12
         );
 
     }
@@ -1227,6 +1346,7 @@ function startHacking() {
     }
 
 }
+
 
 
 /* =========================================================
@@ -1254,27 +1374,27 @@ function shutdownSequence() {
 
         "",
 
-        "Saving source code..................... COMPLETE",
+        "Saving source code................ COMPLETE",
 
-        "Saving project memories................ COMPLETE",
+        "Saving project memories........... COMPLETE",
 
-        "Saving friendships...................... COMPLETE",
+        "Saving friendships................ COMPLETE",
 
-        "Saving late night deployments.......... COMPLETE",
+        "Saving late night deployments..... COMPLETE",
 
-        "Saving countless bugs................... COMPLETE",
+        "Saving countless bugs............. COMPLETE",
 
-        "Saving countless cups of coffee........ COMPLETE",
+        "Saving countless cups of coffee... COMPLETE",
 
         "",
 
-        "Compiling memories...................... OK",
+        "Compiling memories................ OK",
 
-        "Archiving conversations................. OK",
+        "Archiving conversations........... OK",
 
-        "Archiving achievements.................. OK",
+        "Archiving achievements............ OK",
 
-        "Archiving laughter...................... OK",
+        "Archiving laughter................ OK",
 
         "",
 
@@ -1282,15 +1402,15 @@ function shutdownSequence() {
 
         "",
 
-        "Closing active sessions................. OK",
+        "Closing active sessions........... OK",
 
-        "Closing database connection............. OK",
+        "Closing database connection....... OK",
 
-        "Closing VASSAR connection............... OK",
+        "Closing VASSAR connection......... OK",
 
         "",
 
-        "FAREWELL SEQUENCE READY.",
+        "FINAL SYSTEM SHUTDOWN IN",
 
         "",
 
@@ -1311,24 +1431,23 @@ function shutdownSequence() {
     ];
 
 
-    let shutdownIndex = 0;
+    let index = 0;
+
 
 
     function nextShutdownLine() {
 
         if (
-            shutdownIndex <
+            index <
             shutdownLines.length
         ) {
 
             addLine(
-                shutdownLines[
-                    shutdownIndex
-                ]
+                shutdownLines[index]
             );
 
 
-            shutdownIndex++;
+            index++;
 
 
             setTimeout(
@@ -1355,34 +1474,25 @@ function shutdownSequence() {
 }
 
 
+
 /* =========================================================
    FINAL SCREEN
 ========================================================= */
 
 function showFinalScreen() {
 
-    /*
-     * Hide hacker terminal.
-     */
 
     terminal.style.display =
         "none";
 
-
-    /*
-     * Show farewell screen.
-     */
 
     finalScreen.style.display =
         "block";
 
 
     /*
-     * STEP 1:
-     *
-     * Thank You Vassar
-     * From Uday Dumma ♥
-     */
+       1. Thank You
+    */
 
     setTimeout(
         function () {
@@ -1392,33 +1502,31 @@ function showFinalScreen() {
             );
 
         },
-        400
+
+        500
     );
 
 
     /*
-     * STEP 2:
-     *
-     * Show your photo.
-     */
+       2. Photo
+    */
 
     setTimeout(
         function () {
 
-            udayPhoto.classList.add(
+            photoContainer.classList.add(
                 "show"
             );
 
         },
-        2200
+
+        2500
     );
 
 
     /*
-     * STEP 3:
-     *
-     * Final terminal status.
-     */
+       3. Final status
+    */
 
     setTimeout(
         function () {
@@ -1428,19 +1536,23 @@ function showFinalScreen() {
             );
 
         },
+
         4500
     );
 
 }
 
 
+
 /* =========================================================
-   START PROGRAM
+   START
 ========================================================= */
 
 showIntro();
 
 </script>
 
+
 </body>
+
 </html>
