@@ -384,29 +384,40 @@
 
 
         /* =====================================================
+           =====================================================
            MOBILE ONLY
            
-           Desktop CSS ABOVE is NOT changed.
-        ===================================================== */
+           DESKTOP ABOVE IS UNCHANGED.
+           =====================================================
+           ===================================================== */
 
         @media (max-width: 900px) {
 
+
             html,
             body {
+
                 width: 100%;
+
+                height: 100%;
+
                 max-width: 100%;
+
                 overflow: hidden;
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE TERMINAL
-            --------------------------------------------- */
+            ================================================= */
 
             #terminal {
 
                 width: 100vw;
+
                 max-width: 100vw;
+
+                height: 100vh;
 
                 padding: 12px 14px;
 
@@ -420,19 +431,21 @@
 
             .terminal-line {
 
+                width: 100%;
+
                 max-width: 100%;
 
                 overflow: hidden;
 
-                text-overflow: clip;
-
                 white-space: nowrap;
+
+                text-overflow: clip;
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE FINAL SCREEN
-            --------------------------------------------- */
+            ================================================= */
 
             #finalScreen {
 
@@ -446,21 +459,26 @@
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE THANK YOU
-            --------------------------------------------- */
+
+               Fixed at the top.
+            ================================================= */
 
             #thankYou {
+
+                position: absolute;
 
                 left: 0;
 
                 right: 0;
 
-                top: 7%;
+                top: 5%;
 
                 width: 100%;
 
-                padding: 0 20px;
+                padding:
+                    0 12px;
 
                 text-align: center;
 
@@ -478,18 +496,18 @@
 
             #thankYou h1 {
 
-                margin: 0;
-
                 width: 100%;
 
+                margin: 0;
+
                 font-size:
-                    clamp(32px, 9vw, 52px);
+                    clamp(30px, 8vw, 48px);
 
                 line-height: 1.15;
 
                 letter-spacing: 1px;
 
-                white-space: normal;
+                white-space: nowrap;
             }
 
 
@@ -501,14 +519,13 @@
 
                 align-items: center;
 
-                flex-wrap: nowrap;
-
                 width: 100%;
 
-                margin-top: 18px;
+                margin:
+                    14px 0 0;
 
                 font-size:
-                    clamp(21px, 6vw, 34px);
+                    clamp(19px, 5.5vw, 32px);
 
                 line-height: 1.2;
 
@@ -518,58 +535,74 @@
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE HEART
-            --------------------------------------------- */
+            ================================================= */
 
             .heart {
 
                 flex-shrink: 0;
 
-                margin-left: 10px;
+                margin-left: 9px;
 
                 font-size:
-                    clamp(30px, 8vw, 42px);
+                    clamp(28px, 8vw, 42px);
 
                 line-height: 1;
 
                 text-shadow:
                     0 0 5px #ff1744,
                     0 0 12px #ff1744,
-                    0 0 22px #ff1744;
+                    0 0 25px #ff1744;
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE PHOTO
 
-               IMPORTANT:
-               Do NOT use right: 50% with translate
-               because that caused the image to move
-               outside the screen.
-            --------------------------------------------- */
+               CENTERED.
+
+               The important change is that the photo
+               has a fixed vertical zone and cannot extend
+               into the bottom message.
+            ================================================= */
 
             #photoContainer {
+
+                position: absolute;
 
                 left: 50%;
 
                 right: auto;
 
-                bottom: -500px;
+                top: 25%;
 
-                width: min(
-                    72vw,
-                    330px
-                );
+                bottom: auto;
 
-                max-width: 330px;
+                width: 68vw;
 
-                height: auto;
+                max-width: 320px;
+
+                height: 45vh;
+
+                max-height: 45vh;
+
+                display: flex;
+
+                justify-content: center;
+
+                align-items: center;
+
+                opacity: 0;
 
                 transform:
                     translateX(-50%)
-                    translateY(100px)
+                    translateY(60px)
                     scale(0.95);
+
+                transition:
+                    opacity 2.5s ease,
+                    transform 2.5s ease;
             }
 
 
@@ -577,38 +610,57 @@
 
                 left: 50%;
 
-                right: auto;
+                top: 25%;
 
-                bottom: 8%;
+                bottom: auto;
 
                 transform:
                     translateX(-50%)
                     translateY(0)
                     scale(1);
+
+                opacity: 1;
             }
 
 
+            /* =================================================
+               MOBILE IMAGE
+
+               Smaller height so bottom text has room.
+            ================================================= */
+
             #udayPhoto {
 
-                width: 100%;
+                display: block;
+
+                width: auto;
 
                 max-width: 100%;
 
-                max-height: 48vh;
-
                 height: auto;
+
+                max-height: 42vh;
 
                 object-fit: contain;
 
                 border-radius: 8px;
+
+                box-shadow:
+                    0 0 8px #00ff41,
+                    0 0 18px rgba(0,255,65,0.6),
+                    0 0 35px rgba(0,255,65,0.25);
             }
 
 
-            /* ---------------------------------------------
+            /* =================================================
                MOBILE FINAL MESSAGE
-            --------------------------------------------- */
+
+               Always below the photo.
+            ================================================= */
 
             #finalMessage {
+
+                position: absolute;
 
                 left: 0;
 
@@ -619,24 +671,38 @@
                 width: 100%;
 
                 padding:
-                    0 15px;
+                    0 10px;
 
                 text-align: center;
 
                 font-size:
-                    clamp(12px, 3.5vw, 18px);
+                    clamp(11px, 3.2vw, 17px);
 
-                line-height: 1.7;
+                line-height: 1.65;
 
                 white-space: normal;
 
-                overflow: hidden;
+                overflow: visible;
+
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
             }
 
 
-            /* ---------------------------------------------
+            #finalMessage.show {
+
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
+
+            /* =================================================
                MOBILE CURSOR
-            --------------------------------------------- */
+            ================================================= */
 
             .cursor {
 
@@ -651,59 +717,132 @@
 
 
         /* =====================================================
-           VERY SMALL PHONES
+           SMALL PHONES
         ===================================================== */
 
         @media (max-width: 400px) {
 
+
             #thankYou {
 
-                top: 5%;
+                top: 4%;
 
                 padding:
-                    0 12px;
+                    0 8px;
             }
 
 
             #thankYou h1 {
 
-                font-size: 30px;
+                font-size: 28px;
+
+                letter-spacing: 0;
             }
 
 
             #thankYou h2 {
 
-                font-size: 20px;
+                margin-top: 10px;
 
-                margin-top: 12px;
+                font-size: 19px;
             }
 
 
             .heart {
 
-                font-size: 28px;
+                font-size: 27px;
 
                 margin-left: 7px;
             }
 
 
+            /* Smaller photo */
+
             #photoContainer {
 
-                width: 65vw;
+                top: 24%;
 
-                max-width: 260px;
+                width: 62vw;
+
+                max-width: 250px;
+
+                height: 44vh;
+
+                max-height: 44vh;
             }
 
 
             #photoContainer.show {
 
-                bottom: 10%;
+                top: 24%;
             }
 
 
             #udayPhoto {
 
-                max-height: 42vh;
+                max-height: 40vh;
+
+                max-width: 100%;
+            }
+
+
+            /* Bottom text */
+
+            #finalMessage {
+
+                bottom: 2%;
+
+                padding:
+                    0 8px;
+
+                font-size: 10px;
+
+                line-height: 1.5;
+            }
+
+        }
+
+
+        /* =====================================================
+           EXTRA SMALL PHONES
+        ===================================================== */
+
+        @media (max-width: 360px) {
+
+
+            #thankYou h1 {
+
+                font-size: 25px;
+            }
+
+
+            #thankYou h2 {
+
+                font-size: 17px;
+            }
+
+
+            .heart {
+
+                font-size: 24px;
+            }
+
+
+            #photoContainer {
+
+                top: 23%;
+
+                width: 58vw;
+
+                max-width: 220px;
+
+                height: 43vh;
+            }
+
+
+            #udayPhoto {
+
+                max-height: 38vh;
             }
 
 
@@ -711,9 +850,9 @@
 
                 bottom: 2%;
 
-                font-size: 11px;
+                font-size: 9px;
 
-                line-height: 1.5;
+                line-height: 1.4;
             }
 
         }
@@ -726,832 +865,881 @@
 <body>
 
 
-<!-- =====================================================
-     TERMINAL
-===================================================== -->
+    <!-- =====================================================
+         HACKER TERMINAL
+    ===================================================== -->
 
-<div id="terminal"></div>
-
-
-
-<!-- =====================================================
-     FINAL SCREEN
-===================================================== -->
-
-<div id="finalScreen">
+    <div id="terminal"></div>
 
 
-    <!-- THANK YOU -->
 
-    <div id="thankYou">
+    <!-- =====================================================
+         FINAL SCREEN
+    ===================================================== -->
 
-        <h1>
-            Thank You Vassar
-        </h1>
+    <div id="finalScreen">
 
 
-        <h2>
+        <!-- ================================================
+             THANK YOU
+        ================================================= -->
 
-            From Uday Dumma
+        <div id="thankYou">
 
-            <span class="heart">
-                ♥
-            </span>
+            <h1>
+                Thank You Vassar
+            </h1>
 
-        </h2>
+
+            <h2>
+
+                From Uday Dumma
+
+                <span class="heart">
+                    ♥
+                </span>
+
+            </h2>
+
+        </div>
+
+
+
+        <!-- ================================================
+             UDAY PHOTO
+
+             This is still your actual image.
+             Nothing is being generated into the image.
+        ================================================= -->
+
+        <div id="photoContainer">
+
+            <img
+                id="udayPhoto"
+                src="./uday_profile.png"
+                alt="Uday Dumma"
+            >
+
+        </div>
+
+
+
+        <!-- ================================================
+             FINAL MESSAGE
+        ================================================= -->
+
+        <div id="finalMessage">
+
+            [ MEMORIES SAVED SUCCESSFULLY ]
+
+            <br>
+
+            [ CONNECTION CLOSED ]
+
+            <br>
+
+            GOODBYE VASSAR
+
+            <span class="cursor"></span>
+
+        </div>
+
 
     </div>
 
 
 
-    <!-- PHOTO -->
+    <script>
 
-    <div id="photoContainer">
 
-        <img
-            id="udayPhoto"
-            src="./uday_profile.png"
-            alt="Uday Dumma"
-        >
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
 
-    </div>
+        const terminal =
+            document.getElementById("terminal");
 
 
+        const finalScreen =
+            document.getElementById("finalScreen");
 
-    <!-- FINAL MESSAGE -->
 
-    <div id="finalMessage">
+        const thankYou =
+            document.getElementById("thankYou");
 
-        [ MEMORIES SAVED SUCCESSFULLY ]
 
-        <br>
+        const photoContainer =
+            document.getElementById("photoContainer");
 
-        [ CONNECTION CLOSED ]
 
-        <br>
+        const udayPhoto =
+            document.getElementById("udayPhoto");
 
-        GOODBYE VASSAR
 
-        <span class="cursor"></span>
+        const finalMessage =
+            document.getElementById("finalMessage");
 
-    </div>
 
 
-</div>
+        /* =====================================================
+           PHOTO CHECK
+        ===================================================== */
 
+        udayPhoto.onload = function () {
 
-
-<script>
-
-
-/* =========================================================
-   ELEMENTS
-========================================================= */
-
-const terminal =
-    document.getElementById("terminal");
-
-const finalScreen =
-    document.getElementById("finalScreen");
-
-const thankYou =
-    document.getElementById("thankYou");
-
-const photoContainer =
-    document.getElementById("photoContainer");
-
-const udayPhoto =
-    document.getElementById("udayPhoto");
-
-const finalMessage =
-    document.getElementById("finalMessage");
-
-
-
-/* =========================================================
-   PHOTO CHECK
-========================================================= */
-
-udayPhoto.onload = function () {
-
-    console.log(
-        "Uday photo loaded successfully!"
-    );
-
-};
-
-
-udayPhoto.onerror = function () {
-
-    console.error(
-        "Could not load uday_profile.png"
-    );
-
-};
-
-
-
-/* =========================================================
-   HACKER DATA
-========================================================= */
-
-const systems = [
-
-    "VASSAR_CORE",
-    "JAVA_RUNTIME",
-    "SPRING_BOOT",
-    "ANGULAR_ENGINE",
-    "DATABASE_NODE",
-    "API_GATEWAY",
-    "AUTH_SERVICE",
-    "PROJECT_SERVER",
-    "MEMORY_CLUSTER",
-    "DEVOPS_NODE",
-    "PRODUCTION_SERVER",
-    "SECURITY_LAYER",
-    "USER_SERVICE",
-    "NOTIFICATION_ENGINE"
-
-];
-
-
-const actions = [
-
-    "Initializing connection",
-    "Scanning network",
-    "Analyzing packets",
-    "Accessing server",
-    "Decrypting data",
-    "Loading modules",
-    "Synchronizing database",
-    "Checking dependencies",
-    "Compiling source",
-    "Executing command",
-    "Reading system logs",
-    "Generating secure token",
-    "Establishing connection",
-    "Validating credentials",
-    "Processing request",
-    "Querying database",
-    "Fetching records",
-    "Analyzing system",
-    "Loading memory blocks",
-    "Archiving project data",
-    "Scanning project files",
-    "Checking deployment status",
-    "Synchronizing services",
-    "Loading environment variables",
-    "Checking API connections",
-    "Validating database connection",
-    "Preparing memory archive"
-
-];
-
-
-
-/* =========================================================
-   RANDOM HELPERS
-========================================================= */
-
-function randomHex() {
-
-    return Math
-        .random()
-        .toString(16)
-        .substring(2, 10)
-        .toUpperCase();
-
-}
-
-
-function randomNumber() {
-
-    return Math.floor(
-        Math.random() * 999999
-    );
-
-}
-
-
-function randomPercentage() {
-
-    return Math.floor(
-        Math.random() * 100
-    );
-
-}
-
-
-function randomIP() {
-
-    return (
-
-        Math.floor(Math.random() * 255) +
-        "." +
-        Math.floor(Math.random() * 255) +
-        "." +
-        Math.floor(Math.random() * 255) +
-        "." +
-        Math.floor(Math.random() * 255)
-
-    );
-
-}
-
-
-
-/* =========================================================
-   GENERATE HACKER LINE
-========================================================= */
-
-function generateLine() {
-
-    const type =
-        Math.floor(Math.random() * 9);
-
-
-    if (type === 0) {
-
-        return {
-
-            text:
-                "[SYSTEM] " +
-                actions[
-                    Math.floor(
-                        Math.random() *
-                        actions.length
-                    )
-                ] +
-                " " +
-                systems[
-                    Math.floor(
-                        Math.random() *
-                        systems.length
-                    )
-                ],
-
-            className: ""
+            console.log(
+                "Uday photo loaded successfully!"
+            );
 
         };
 
-    }
 
+        udayPhoto.onerror = function () {
 
-    if (type === 1) {
-
-        return {
-
-            text:
-                "PACKET_" +
-                randomNumber() +
-                " SRC=" +
-                randomIP() +
-                " DST=" +
-                randomIP() +
-                " STATUS=ENCRYPTED",
-
-            className: ""
+            console.error(
+                "Could not load uday_profile.png"
+            );
 
         };
 
-    }
 
 
-    if (type === 2) {
+        /* =====================================================
+           HACKER DATA
+        ===================================================== */
 
-        return {
+        const systems = [
 
-            text:
-                "MEMORY 0x" +
-                randomHex() +
-                " 0x" +
-                randomHex() +
-                " 0x" +
-                randomHex(),
+            "VASSAR_CORE",
 
-            className: ""
+            "JAVA_RUNTIME",
 
-        };
+            "SPRING_BOOT",
 
-    }
+            "ANGULAR_ENGINE",
 
+            "DATABASE_NODE",
 
-    if (type === 3) {
+            "API_GATEWAY",
 
-        return {
+            "AUTH_SERVICE",
 
-            text:
-                "PROCESS_" +
-                randomNumber() +
-                " PID=" +
-                randomNumber() +
-                " CPU=" +
-                randomPercentage() +
-                "% MEM=" +
-                randomPercentage() +
-                "% STATUS=RUNNING",
+            "PROJECT_SERVER",
 
-            className: ""
+            "MEMORY_CLUSTER",
 
-        };
+            "DEVOPS_NODE",
 
-    }
+            "PRODUCTION_SERVER",
 
+            "SECURITY_LAYER",
 
-    if (type === 4) {
+            "USER_SERVICE",
 
-        return {
+            "NOTIFICATION_ENGINE"
 
-            text:
-                ">>> SEARCHING NODE_" +
-                randomHex() +
-                " ... ACCESS GRANTED",
+        ];
 
-            className:
-                "success"
 
-        };
+        const actions = [
 
-    }
+            "Initializing connection",
 
+            "Scanning network",
 
-    if (type === 5) {
+            "Analyzing packets",
 
-        return {
+            "Accessing server",
 
-            text:
-                "DATABASE_QUERY_" +
-                randomNumber() +
-                " ROWS=" +
-                randomNumber() +
-                " TIME=" +
-                Math.floor(
-                    Math.random() * 500
-                ) +
-                "ms",
+            "Decrypting data",
 
-            className: ""
+            "Loading modules",
 
-        };
+            "Synchronizing database",
 
-    }
+            "Checking dependencies",
 
+            "Compiling source",
 
-    if (type === 6) {
+            "Executing command",
 
-        return {
+            "Reading system logs",
 
-            text:
-                "SECURITY_LAYER_" +
-                randomNumber() +
-                " TOKEN=" +
-                randomHex() +
-                " STATUS=VERIFIED",
+            "Generating secure token",
 
-            className:
-                "warning"
+            "Establishing connection",
 
-        };
+            "Validating credentials",
 
-    }
+            "Processing request",
 
+            "Querying database",
 
-    if (type === 7) {
+            "Fetching records",
 
-        return {
+            "Analyzing system",
 
-            text:
-                "API_REQUEST_" +
-                randomNumber() +
-                " RESPONSE=200 LATENCY=" +
-                Math.floor(
-                    Math.random() * 400
-                ) +
-                "ms",
+            "Loading memory blocks",
 
-            className:
-                "success"
+            "Archiving project data",
 
-        };
+            "Scanning project files",
 
-    }
+            "Checking deployment status",
 
+            "Synchronizing services",
 
-    return {
+            "Loading environment variables",
 
-        text:
-            "DEPLOYMENT_NODE_" +
-            randomNumber() +
-            " BUILD=" +
-            randomHex() +
-            " STATUS=SUCCESS",
+            "Checking API connections",
 
-        className:
-            "success"
+            "Validating database connection",
 
-    };
+            "Preparing memory archive"
 
-}
+        ];
 
 
 
-/* =========================================================
-   ADD TERMINAL LINE
-========================================================= */
+        /* =====================================================
+           RANDOM HELPERS
+        ===================================================== */
 
-function addLine(
-    text,
-    className = ""
-) {
+        function randomHex() {
 
-    const line =
-        document.createElement(
-            "div"
-        );
+            return Math
+                .random()
+                .toString(16)
+                .substring(2, 10)
+                .toUpperCase();
 
+        }
 
-    line.className =
-        "terminal-line";
 
+        function randomNumber() {
 
-    if (className) {
+            return Math.floor(
+                Math.random() * 999999
+            );
 
-        line.classList.add(
-            className
-        );
+        }
 
-    }
 
+        function randomPercentage() {
 
-    line.textContent =
-        text;
+            return Math.floor(
+                Math.random() * 100
+            );
 
+        }
 
-    terminal.appendChild(
-        line
-    );
 
+        function randomIP() {
 
-    while (
-        terminal.children.length > 45
-    ) {
+            return (
 
-        terminal.removeChild(
-            terminal.firstChild
-        );
+                Math.floor(Math.random() * 255) +
+                "." +
+                Math.floor(Math.random() * 255) +
+                "." +
+                Math.floor(Math.random() * 255) +
+                "." +
+                Math.floor(Math.random() * 255)
 
-    }
+            );
 
-}
+        }
 
 
 
-/* =========================================================
-   INTRO
-========================================================= */
+        /* =====================================================
+           GENERATE HACKER LINE
+        ===================================================== */
 
-const intro = [
+        function generateLine() {
 
-    "==============================================================",
+            const type =
+                Math.floor(Math.random() * 9);
 
-    "VASSAR FAREWELL PROTOCOL v2026.08",
 
-    "==============================================================",
+            if (type === 0) {
 
-    "",
+                return {
 
-    "BOOTING VASSAR CORE SYSTEM...",
+                    text:
+                        "[SYSTEM] " +
+                        actions[
+                            Math.floor(
+                                Math.random() *
+                                actions.length
+                            )
+                        ] +
+                        " " +
+                        systems[
+                            Math.floor(
+                                Math.random() *
+                                systems.length
+                            )
+                        ],
 
-    "Initializing terminal...",
+                    className: ""
 
-    "Loading developer profile...",
+                };
 
-    "Connecting to VASSAR CORE...",
+            }
 
-    "Establishing secure connection...",
 
-    "AUTHENTICATION SUCCESSFUL",
+            if (type === 1) {
 
-    "",
+                return {
 
-    "USER: UDAY_DUMMA",
+                    text:
+                        "PACKET_" +
+                        randomNumber() +
+                        " SRC=" +
+                        randomIP() +
+                        " DST=" +
+                        randomIP() +
+                        " STATUS=ENCRYPTED",
 
-    "ACCESS LEVEL: DEVELOPER",
+                    className: ""
 
-    "",
+                };
 
-    "Scanning project memories...",
+            }
 
-    "Scanning source repositories...",
 
-    "Checking deployments...",
+            if (type === 2) {
 
-    "Checking database connections...",
+                return {
 
-    "Checking application services...",
+                    text:
+                        "MEMORY 0x" +
+                        randomHex() +
+                        " 0x" +
+                        randomHex() +
+                        " 0x" +
+                        randomHex(),
 
-    "",
+                    className: ""
 
-    "WARNING: FAREWELL SEQUENCE DETECTED...",
+                };
 
-    "",
+            }
 
-    "Preparing memory archive...",
 
-    "Preparing project archive...",
+            if (type === 3) {
 
-    "Preparing friendship archive...",
+                return {
 
-    "",
+                    text:
+                        "PROCESS_" +
+                        randomNumber() +
+                        " PID=" +
+                        randomNumber() +
+                        " CPU=" +
+                        randomPercentage() +
+                        "% MEM=" +
+                        randomPercentage() +
+                        "% STATUS=RUNNING",
 
-    "STARTING FAREWELL PROTOCOL..."
+                    className: ""
 
-];
+                };
 
+            }
 
-let introIndex = 0;
 
+            if (type === 4) {
 
+                return {
 
-function showIntro() {
+                    text:
+                        ">>> SEARCHING NODE_" +
+                        randomHex() +
+                        " ... ACCESS GRANTED",
 
-    if (
-        introIndex <
-        intro.length
-    ) {
+                    className:
+                        "success"
 
-        addLine(
-            intro[introIndex]
-        );
+                };
 
+            }
 
-        introIndex++;
 
+            if (type === 5) {
 
-        setTimeout(
-            showIntro,
-            110
-        );
+                return {
 
-    }
+                    text:
+                        "DATABASE_QUERY_" +
+                        randomNumber() +
+                        " ROWS=" +
+                        randomNumber() +
+                        " TIME=" +
+                        Math.floor(
+                            Math.random() * 500
+                        ) +
+                        "ms",
 
-    else {
+                    className: ""
 
-        startHacking();
+                };
 
-    }
+            }
 
-}
 
+            if (type === 6) {
 
+                return {
 
-/* =========================================================
-   400 HACKER LINES
-========================================================= */
+                    text:
+                        "SECURITY_LAYER_" +
+                        randomNumber() +
+                        " TOKEN=" +
+                        randomHex() +
+                        " STATUS=VERIFIED",
 
-let lineCount = 0;
+                    className:
+                        "warning"
 
+                };
 
+            }
 
-function startHacking() {
 
-    if (
-        lineCount < 400
-    ) {
+            if (type === 7) {
 
-        const generated =
-            generateLine();
+                return {
 
+                    text:
+                        "API_REQUEST_" +
+                        randomNumber() +
+                        " RESPONSE=200 LATENCY=" +
+                        Math.floor(
+                            Math.random() * 400
+                        ) +
+                        "ms",
 
-        addLine(
-            generated.text,
-            generated.className
-        );
+                    className:
+                        "success"
 
+                };
 
-        lineCount++;
+            }
 
 
-        setTimeout(
-            startHacking,
-            Math.random() * 25 + 12
-        );
+            return {
 
-    }
+                text:
+                    "DEPLOYMENT_NODE_" +
+                    randomNumber() +
+                    " BUILD=" +
+                    randomHex() +
+                    " STATUS=SUCCESS",
 
-    else {
+                className:
+                    "success"
 
-        shutdownSequence();
+            };
 
-    }
+        }
 
-}
 
 
+        /* =====================================================
+           ADD TERMINAL LINE
+        ===================================================== */
 
-/* =========================================================
-   SHUTDOWN
-========================================================= */
-
-function shutdownSequence() {
-
-    terminal.innerHTML = "";
-
-
-    const shutdownLines = [
-
-        "",
-
-        "==============================================================",
-
-        "VASSAR FAREWELL PROTOCOL",
-
-        "==============================================================",
-
-        "",
-
-        "SYSTEM SHUTDOWN INITIATED...",
-
-        "",
-
-        "Saving source code................ COMPLETE",
-
-        "Saving project memories........... COMPLETE",
-
-        "Saving friendships................ COMPLETE",
-
-        "Saving late night deployments..... COMPLETE",
-
-        "Saving countless bugs............. COMPLETE",
-
-        "Saving countless cups of coffee... COMPLETE",
-
-        "",
-
-        "Compiling memories................ OK",
-
-        "Archiving conversations........... OK",
-
-        "Archiving achievements............ OK",
-
-        "Archiving laughter................ OK",
-
-        "",
-
-        "MEMORY ARCHIVE COMPLETE",
-
-        "",
-
-        "Closing active sessions........... OK",
-
-        "Closing database connection....... OK",
-
-        "Closing VASSAR connection......... OK",
-
-        "",
-
-        "FINAL SYSTEM SHUTDOWN IN",
-
-        "",
-
-        "3",
-
-        "",
-
-        "2",
-
-        "",
-
-        "1",
-
-        "",
-
-        "GOODBYE VASSAR..."
-
-    ];
-
-
-    let index = 0;
-
-
-
-    function nextShutdownLine() {
-
-        if (
-            index <
-            shutdownLines.length
+        function addLine(
+            text,
+            className = ""
         ) {
 
-            addLine(
-                shutdownLines[index]
+            const line =
+                document.createElement(
+                    "div"
+                );
+
+
+            line.className =
+                "terminal-line";
+
+
+            if (className) {
+
+                line.classList.add(
+                    className
+                );
+
+            }
+
+
+            line.textContent =
+                text;
+
+
+            terminal.appendChild(
+                line
             );
 
 
-            index++;
+            while (
+                terminal.children.length > 45
+            ) {
 
+                terminal.removeChild(
+                    terminal.firstChild
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           INTRO
+        ===================================================== */
+
+        const intro = [
+
+            "==============================================================",
+
+            "VASSAR FAREWELL PROTOCOL v2026.08",
+
+            "==============================================================",
+
+            "",
+
+            "BOOTING VASSAR CORE SYSTEM...",
+
+            "Initializing terminal...",
+
+            "Loading developer profile...",
+
+            "Connecting to VASSAR CORE...",
+
+            "Establishing secure connection...",
+
+            "AUTHENTICATION SUCCESSFUL",
+
+            "",
+
+            "USER: UDAY_DUMMA",
+
+            "ACCESS LEVEL: DEVELOPER",
+
+            "",
+
+            "Scanning project memories...",
+
+            "Scanning source repositories...",
+
+            "Checking deployments...",
+
+            "Checking database connections...",
+
+            "Checking application services...",
+
+            "",
+
+            "WARNING: FAREWELL SEQUENCE DETECTED...",
+
+            "",
+
+            "Preparing memory archive...",
+
+            "Preparing project archive...",
+
+            "Preparing friendship archive...",
+
+            "",
+
+            "STARTING FAREWELL PROTOCOL..."
+
+        ];
+
+
+        let introIndex = 0;
+
+
+
+        function showIntro() {
+
+            if (
+                introIndex <
+                intro.length
+            ) {
+
+                addLine(
+                    intro[introIndex]
+                );
+
+
+                introIndex++;
+
+
+                setTimeout(
+                    showIntro,
+                    110
+                );
+
+            }
+
+            else {
+
+                startHacking();
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           400 HACKER LINES
+        ===================================================== */
+
+        let lineCount = 0;
+
+
+
+        function startHacking() {
+
+            if (
+                lineCount < 400
+            ) {
+
+                const generated =
+                    generateLine();
+
+
+                addLine(
+                    generated.text,
+                    generated.className
+                );
+
+
+                lineCount++;
+
+
+                setTimeout(
+                    startHacking,
+                    Math.random() * 25 + 12
+                );
+
+            }
+
+            else {
+
+                shutdownSequence();
+
+            }
+
+        }
+
+
+
+        /* =====================================================
+           SHUTDOWN
+        ===================================================== */
+
+        function shutdownSequence() {
+
+            terminal.innerHTML = "";
+
+
+            const shutdownLines = [
+
+                "",
+
+                "==============================================================",
+
+                "VASSAR FAREWELL PROTOCOL",
+
+                "==============================================================",
+
+                "",
+
+                "SYSTEM SHUTDOWN INITIATED...",
+
+                "",
+
+                "Saving source code................ COMPLETE",
+
+                "Saving project memories........... COMPLETE",
+
+                "Saving friendships................ COMPLETE",
+
+                "Saving late night deployments..... COMPLETE",
+
+                "Saving countless bugs............. COMPLETE",
+
+                "Saving countless cups of coffee... COMPLETE",
+
+                "",
+
+                "Compiling memories................ OK",
+
+                "Archiving conversations........... OK",
+
+                "Archiving achievements............ OK",
+
+                "Archiving laughter................ OK",
+
+                "",
+
+                "MEMORY ARCHIVE COMPLETE",
+
+                "",
+
+                "Closing active sessions........... OK",
+
+                "Closing database connection....... OK",
+
+                "Closing VASSAR connection......... OK",
+
+                "",
+
+                "FINAL SYSTEM SHUTDOWN IN",
+
+                "",
+
+                "3",
+
+                "",
+
+                "2",
+
+                "",
+
+                "1",
+
+                "",
+
+                "GOODBYE VASSAR..."
+
+            ];
+
+
+            let index = 0;
+
+
+
+            function nextShutdownLine() {
+
+                if (
+                    index <
+                    shutdownLines.length
+                ) {
+
+                    addLine(
+                        shutdownLines[index]
+                    );
+
+
+                    index++;
+
+
+                    setTimeout(
+                        nextShutdownLine,
+                        420
+                    );
+
+                }
+
+                else {
+
+                    setTimeout(
+                        showFinalScreen,
+                        1500
+                    );
+
+                }
+
+            }
+
+
+            nextShutdownLine();
+
+        }
+
+
+
+        /* =====================================================
+           FINAL SCREEN
+        ===================================================== */
+
+        function showFinalScreen() {
+
+
+            terminal.style.display =
+                "none";
+
+
+            finalScreen.style.display =
+                "block";
+
+
+            /*
+             * 1. Show thank-you.
+             */
 
             setTimeout(
-                nextShutdownLine,
-                420
+                function () {
+
+                    thankYou.classList.add(
+                        "show"
+                    );
+
+                },
+                500
+            );
+
+
+            /*
+             * 2. Show photo.
+             */
+
+            setTimeout(
+                function () {
+
+                    photoContainer.classList.add(
+                        "show"
+                    );
+
+                },
+                2500
+            );
+
+
+            /*
+             * 3. Show final status.
+             */
+
+            setTimeout(
+                function () {
+
+                    finalMessage.classList.add(
+                        "show"
+                    );
+
+                },
+                4500
             );
 
         }
 
-        else {
-
-            setTimeout(
-                showFinalScreen,
-                1500
-            );
-
-        }
-
-    }
 
 
-    nextShutdownLine();
+        /* =====================================================
+           START
+        ===================================================== */
 
-}
+        showIntro();
 
-
-
-/* =========================================================
-   FINAL SCREEN
-========================================================= */
-
-function showFinalScreen() {
-
-
-    terminal.style.display =
-        "none";
-
-
-    finalScreen.style.display =
-        "block";
-
-
-    /*
-       1. Thank You
-    */
-
-    setTimeout(
-        function () {
-
-            thankYou.classList.add(
-                "show"
-            );
-
-        },
-
-        500
-    );
-
-
-    /*
-       2. Photo
-    */
-
-    setTimeout(
-        function () {
-
-            photoContainer.classList.add(
-                "show"
-            );
-
-        },
-
-        2500
-    );
-
-
-    /*
-       3. Final status
-    */
-
-    setTimeout(
-        function () {
-
-            finalMessage.classList.add(
-                "show"
-            );
-
-        },
-
-        4500
-    );
-
-}
-
-
-
-/* =========================================================
-   START
-========================================================= */
-
-showIntro();
-
-</script>
-
+    </script>
 
 </body>
 
