@@ -4,9 +4,14 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Farewell - Uday Dumma</title>
+
 
     <style>
 
@@ -14,17 +19,27 @@
             box-sizing: border-box;
         }
 
+
         html,
         body {
+
             margin: 0;
+
             width: 100%;
             height: 100%;
+
             background: #000;
+
             overflow: hidden;
         }
 
+
         body {
-            font-family: "Courier New", monospace;
+
+            font-family:
+                "Courier New",
+                monospace;
+
             color: #00ff41;
         }
 
@@ -34,7 +49,9 @@
         ===================================================== */
 
         #terminal {
+
             position: fixed;
+
             inset: 0;
 
             padding: 22px 28px;
@@ -44,6 +61,7 @@
             overflow: hidden;
 
             font-size: 16px;
+
             line-height: 1.35;
 
             text-shadow:
@@ -53,12 +71,15 @@
 
 
         .terminal-line {
+
             white-space: nowrap;
+
             min-height: 21px;
         }
 
 
         .warning {
+
             color: #ffff00;
 
             text-shadow:
@@ -67,6 +88,7 @@
 
 
         .success {
+
             color: #00ff41;
         }
 
@@ -84,6 +106,7 @@
             inset: 0;
 
             background:
+
                 radial-gradient(
                     circle at 75% 50%,
                     #001a08 0%,
@@ -95,7 +118,9 @@
         }
 
 
-        /* Scan lines */
+        /* =====================================================
+           SCAN LINES
+        ===================================================== */
 
         #finalScreen::after {
 
@@ -110,6 +135,7 @@
             z-index: 100;
 
             background:
+
                 repeating-linear-gradient(
                     0deg,
                     rgba(0,255,65,0.025) 0px,
@@ -129,15 +155,18 @@
             position: absolute;
 
             left: 6%;
+
             top: 20%;
 
             z-index: 20;
 
             opacity: 0;
 
-            transform: translateY(30px);
+            transform:
+                translateY(30px);
 
             transition:
+
                 opacity 2s ease,
                 transform 2s ease;
         }
@@ -147,7 +176,8 @@
 
             opacity: 1;
 
-            transform: translateY(0);
+            transform:
+                translateY(0);
         }
 
 
@@ -155,13 +185,19 @@
 
             margin: 0;
 
-            font-size: clamp(48px, 5vw, 78px);
+            font-size:
+                clamp(
+                    48px,
+                    5vw,
+                    78px
+                );
 
             color: #00ff41;
 
             letter-spacing: 3px;
 
             text-shadow:
+
                 0 0 7px #00ff41,
                 0 0 18px #00ff41,
                 0 0 35px #00ff41;
@@ -176,20 +212,27 @@
 
             margin-top: 30px;
 
-            font-size: clamp(28px, 3vw, 45px);
+            font-size:
+                clamp(
+                    28px,
+                    3vw,
+                    45px
+                );
 
             color: white;
 
             letter-spacing: 2px;
 
             text-shadow:
+
                 0 0 7px white,
-                0 0 18px rgba(255,255,255,0.8);
+                0 0 18px
+                rgba(255,255,255,0.8);
         }
 
 
         /* =====================================================
-           RED HEART
+           HEART
         ===================================================== */
 
         .heart {
@@ -209,10 +252,12 @@
             line-height: 1;
 
             text-shadow:
+
                 0 0 5px #ff1744,
                 0 0 12px #ff1744,
                 0 0 25px #ff1744,
-                0 0 40px rgba(255,23,68,0.8);
+                0 0 40px
+                rgba(255,23,68,0.8);
 
             animation:
                 heartbeat 1.3s infinite;
@@ -222,33 +267,45 @@
         @keyframes heartbeat {
 
             0% {
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
 
             15% {
-                transform: scale(1.25);
+
+                transform:
+                    scale(1.25);
             }
 
             30% {
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
 
             45% {
-                transform: scale(1.18);
+
+                transform:
+                    scale(1.18);
             }
 
             60% {
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
 
             100% {
-                transform: scale(1);
+
+                transform:
+                    scale(1);
             }
         }
 
 
         /* =====================================================
-           PHOTO
+           PHOTO CONTAINER
         ===================================================== */
 
         #photoContainer {
@@ -256,19 +313,26 @@
             position: absolute;
 
             right: 5%;
+
             bottom: 7%;
 
-            width: min(440px, 32vw);
+            width:
+                min(
+                    440px,
+                    32vw
+                );
 
             z-index: 10;
 
             opacity: 0;
 
             transform:
+
                 translateY(100px)
                 scale(0.95);
 
             transition:
+
                 opacity 2.5s ease,
                 transform 2.5s ease;
         }
@@ -279,10 +343,15 @@
             opacity: 1;
 
             transform:
+
                 translateY(0)
                 scale(1);
         }
 
+
+        /* =====================================================
+           ACTUAL PHOTO
+        ===================================================== */
 
         #udayPhoto {
 
@@ -299,14 +368,17 @@
             border-radius: 10px;
 
             box-shadow:
+
                 0 0 8px #00ff41,
-                0 0 20px rgba(0,255,65,0.6),
-                0 0 45px rgba(0,255,65,0.25);
+                0 0 20px
+                rgba(0,255,65,0.6),
+                0 0 45px
+                rgba(0,255,65,0.25);
         }
 
 
         /* =====================================================
-           FINAL STATUS
+           FINAL MESSAGE
         ===================================================== */
 
         #finalMessage {
@@ -314,23 +386,33 @@
             position: absolute;
 
             left: 6%;
+
             bottom: 13%;
 
             z-index: 20;
 
             opacity: 0;
 
-            transform: translateY(20px);
+            transform:
+                translateY(20px);
 
-            font-size: clamp(18px, 1.6vw, 25px);
+            font-size:
+                clamp(
+                    18px,
+                    1.6vw,
+                    25px
+                );
 
             line-height: 1.9;
 
             text-shadow:
+
                 0 0 5px #00ff41,
-                0 0 12px rgba(0,255,65,0.5);
+                0 0 12px
+                rgba(0,255,65,0.5);
 
             transition:
+
                 opacity 2s ease,
                 transform 2s ease;
         }
@@ -340,12 +422,13 @@
 
             opacity: 1;
 
-            transform: translateY(0);
+            transform:
+                translateY(0);
         }
 
 
         /* =====================================================
-           BLINKING CURSOR
+           CURSOR
         ===================================================== */
 
         .cursor {
@@ -353,6 +436,7 @@
             display: inline-block;
 
             width: 11px;
+
             height: 22px;
 
             margin-left: 5px;
@@ -373,23 +457,23 @@
 
             0%,
             45% {
+
                 opacity: 1;
             }
 
             46%,
             100% {
+
                 opacity: 0;
             }
         }
 
 
         /* =====================================================
-           =====================================================
-           MOBILE ONLY
+           MOBILE
            
-           DESKTOP ABOVE IS UNCHANGED.
-           =====================================================
-           ===================================================== */
+           Desktop layout above is unchanged.
+        ===================================================== */
 
         @media (max-width: 900px) {
 
@@ -407,9 +491,9 @@
             }
 
 
-            /* =================================================
-               MOBILE TERMINAL
-            ================================================= */
+            /* -------------------------------------------------
+               TERMINAL
+            ------------------------------------------------- */
 
             #terminal {
 
@@ -419,7 +503,8 @@
 
                 height: 100vh;
 
-                padding: 12px 14px;
+                padding:
+                    12px 14px;
 
                 font-size: 11px;
 
@@ -438,14 +523,12 @@
                 overflow: hidden;
 
                 white-space: nowrap;
-
-                text-overflow: clip;
             }
 
 
-            /* =================================================
-               MOBILE FINAL SCREEN
-            ================================================= */
+            /* -------------------------------------------------
+               FINAL SCREEN
+            ------------------------------------------------- */
 
             #finalScreen {
 
@@ -459,15 +542,11 @@
             }
 
 
-            /* =================================================
-               MOBILE THANK YOU
-
-               Fixed at the top.
-            ================================================= */
+            /* -------------------------------------------------
+               THANK YOU
+            ------------------------------------------------- */
 
             #thankYou {
-
-                position: absolute;
 
                 left: 0;
 
@@ -501,7 +580,11 @@
                 margin: 0;
 
                 font-size:
-                    clamp(30px, 8vw, 48px);
+                    clamp(
+                        30px,
+                        8vw,
+                        48px
+                    );
 
                 line-height: 1.15;
 
@@ -525,7 +608,11 @@
                     14px 0 0;
 
                 font-size:
-                    clamp(19px, 5.5vw, 32px);
+                    clamp(
+                        19px,
+                        5.5vw,
+                        32px
+                    );
 
                 line-height: 1.2;
 
@@ -535,9 +622,9 @@
             }
 
 
-            /* =================================================
+            /* -------------------------------------------------
                MOBILE HEART
-            ================================================= */
+            ------------------------------------------------- */
 
             .heart {
 
@@ -546,26 +633,27 @@
                 margin-left: 9px;
 
                 font-size:
-                    clamp(28px, 8vw, 42px);
+                    clamp(
+                        28px,
+                        8vw,
+                        42px
+                    );
 
                 line-height: 1;
 
                 text-shadow:
+
                     0 0 5px #ff1744,
                     0 0 12px #ff1744,
                     0 0 25px #ff1744;
             }
 
 
-            /* =================================================
-               MOBILE PHOTO
-
-               CENTERED.
-
-               The important change is that the photo
-               has a fixed vertical zone and cannot extend
-               into the bottom message.
-            ================================================= */
+            /* -------------------------------------------------
+               PHOTO
+               
+               Centered and limited in height.
+            ------------------------------------------------- */
 
             #photoContainer {
 
@@ -596,11 +684,13 @@
                 opacity: 0;
 
                 transform:
+
                     translateX(-50%)
                     translateY(60px)
                     scale(0.95);
 
                 transition:
+
                     opacity 2.5s ease,
                     transform 2.5s ease;
             }
@@ -615,6 +705,7 @@
                 bottom: auto;
 
                 transform:
+
                     translateX(-50%)
                     translateY(0)
                     scale(1);
@@ -623,11 +714,9 @@
             }
 
 
-            /* =================================================
-               MOBILE IMAGE
-
-               Smaller height so bottom text has room.
-            ================================================= */
+            /* -------------------------------------------------
+               IMAGE
+            ------------------------------------------------- */
 
             #udayPhoto {
 
@@ -646,17 +735,20 @@
                 border-radius: 8px;
 
                 box-shadow:
+
                     0 0 8px #00ff41,
-                    0 0 18px rgba(0,255,65,0.6),
-                    0 0 35px rgba(0,255,65,0.25);
+                    0 0 18px
+                    rgba(0,255,65,0.6),
+                    0 0 35px
+                    rgba(0,255,65,0.25);
             }
 
 
-            /* =================================================
-               MOBILE FINAL MESSAGE
-
-               Always below the photo.
-            ================================================= */
+            /* -------------------------------------------------
+               FINAL MESSAGE
+               
+               Always visible at bottom.
+            ------------------------------------------------- */
 
             #finalMessage {
 
@@ -676,7 +768,11 @@
                 text-align: center;
 
                 font-size:
-                    clamp(11px, 3.2vw, 17px);
+                    clamp(
+                        11px,
+                        3.2vw,
+                        17px
+                    );
 
                 line-height: 1.65;
 
@@ -700,9 +796,9 @@
             }
 
 
-            /* =================================================
-               MOBILE CURSOR
-            ================================================= */
+            /* -------------------------------------------------
+               CURSOR
+            ------------------------------------------------- */
 
             .cursor {
 
@@ -756,8 +852,6 @@
             }
 
 
-            /* Smaller photo */
-
             #photoContainer {
 
                 top: 24%;
@@ -785,8 +879,6 @@
                 max-width: 100%;
             }
 
-
-            /* Bottom text */
 
             #finalMessage {
 
@@ -881,7 +973,7 @@
 
 
         <!-- ================================================
-             THANK YOU
+             THANK YOU MESSAGE
         ================================================= -->
 
         <div id="thankYou">
@@ -908,8 +1000,8 @@
         <!-- ================================================
              UDAY PHOTO
 
-             This is still your actual image.
-             Nothing is being generated into the image.
+             The browser loads this directly from:
+             ./uday_profile.png
         ================================================= -->
 
         <div id="photoContainer">
@@ -957,27 +1049,39 @@
         ===================================================== */
 
         const terminal =
-            document.getElementById("terminal");
+            document.getElementById(
+                "terminal"
+            );
 
 
         const finalScreen =
-            document.getElementById("finalScreen");
+            document.getElementById(
+                "finalScreen"
+            );
 
 
         const thankYou =
-            document.getElementById("thankYou");
+            document.getElementById(
+                "thankYou"
+            );
 
 
         const photoContainer =
-            document.getElementById("photoContainer");
+            document.getElementById(
+                "photoContainer"
+            );
 
 
         const udayPhoto =
-            document.getElementById("udayPhoto");
+            document.getElementById(
+                "udayPhoto"
+            );
 
 
         const finalMessage =
-            document.getElementById("finalMessage");
+            document.getElementById(
+                "finalMessage"
+            );
 
 
 
@@ -985,27 +1089,29 @@
            PHOTO CHECK
         ===================================================== */
 
-        udayPhoto.onload = function () {
+        udayPhoto.onload =
+            function () {
 
-            console.log(
-                "Uday photo loaded successfully!"
-            );
+                console.log(
+                    "Uday photo loaded successfully."
+                );
 
-        };
+            };
 
 
-        udayPhoto.onerror = function () {
+        udayPhoto.onerror =
+            function () {
 
-            console.error(
-                "Could not load uday_profile.png"
-            );
+                console.error(
+                    "ERROR: uday_profile.png was not found."
+                );
 
-        };
+            };
 
 
 
         /* =====================================================
-           HACKER DATA
+           SYSTEM NAMES
         ===================================================== */
 
         const systems = [
@@ -1040,6 +1146,11 @@
 
         ];
 
+
+
+        /* =====================================================
+           HACKER ACTIONS
+        ===================================================== */
 
         const actions = [
 
@@ -1102,7 +1213,7 @@
 
 
         /* =====================================================
-           RANDOM HELPERS
+           RANDOM HEX
         ===================================================== */
 
         function randomHex() {
@@ -1116,6 +1227,11 @@
         }
 
 
+
+        /* =====================================================
+           RANDOM NUMBER
+        ===================================================== */
+
         function randomNumber() {
 
             return Math.floor(
@@ -1124,6 +1240,11 @@
 
         }
 
+
+
+        /* =====================================================
+           RANDOM PERCENTAGE
+        ===================================================== */
 
         function randomPercentage() {
 
@@ -1134,17 +1255,36 @@
         }
 
 
+
+        /* =====================================================
+           RANDOM IP
+        ===================================================== */
+
         function randomIP() {
 
             return (
 
-                Math.floor(Math.random() * 255) +
+                Math.floor(
+                    Math.random() * 255
+                ) +
+
                 "." +
-                Math.floor(Math.random() * 255) +
+
+                Math.floor(
+                    Math.random() * 255
+                ) +
+
                 "." +
-                Math.floor(Math.random() * 255) +
+
+                Math.floor(
+                    Math.random() * 255
+                ) +
+
                 "." +
-                Math.floor(Math.random() * 255)
+
+                Math.floor(
+                    Math.random() * 255
+                )
 
             );
 
@@ -1159,7 +1299,9 @@
         function generateLine() {
 
             const type =
-                Math.floor(Math.random() * 9);
+                Math.floor(
+                    Math.random() * 9
+                );
 
 
             if (type === 0) {
@@ -1167,14 +1309,18 @@
                 return {
 
                     text:
+
                         "[SYSTEM] " +
+
                         actions[
                             Math.floor(
                                 Math.random() *
                                 actions.length
                             )
                         ] +
+
                         " " +
+
                         systems[
                             Math.floor(
                                 Math.random() *
@@ -1194,12 +1340,19 @@
                 return {
 
                     text:
+
                         "PACKET_" +
+
                         randomNumber() +
+
                         " SRC=" +
+
                         randomIP() +
+
                         " DST=" +
+
                         randomIP() +
+
                         " STATUS=ENCRYPTED",
 
                     className: ""
@@ -1214,11 +1367,17 @@
                 return {
 
                     text:
+
                         "MEMORY 0x" +
+
                         randomHex() +
+
                         " 0x" +
+
                         randomHex() +
+
                         " 0x" +
+
                         randomHex(),
 
                     className: ""
@@ -1233,14 +1392,23 @@
                 return {
 
                     text:
+
                         "PROCESS_" +
+
                         randomNumber() +
+
                         " PID=" +
+
                         randomNumber() +
+
                         " CPU=" +
+
                         randomPercentage() +
+
                         "% MEM=" +
+
                         randomPercentage() +
+
                         "% STATUS=RUNNING",
 
                     className: ""
@@ -1255,8 +1423,11 @@
                 return {
 
                     text:
+
                         ">>> SEARCHING NODE_" +
+
                         randomHex() +
+
                         " ... ACCESS GRANTED",
 
                     className:
@@ -1272,14 +1443,21 @@
                 return {
 
                     text:
+
                         "DATABASE_QUERY_" +
+
                         randomNumber() +
+
                         " ROWS=" +
+
                         randomNumber() +
+
                         " TIME=" +
+
                         Math.floor(
                             Math.random() * 500
                         ) +
+
                         "ms",
 
                     className: ""
@@ -1294,10 +1472,15 @@
                 return {
 
                     text:
+
                         "SECURITY_LAYER_" +
+
                         randomNumber() +
+
                         " TOKEN=" +
+
                         randomHex() +
+
                         " STATUS=VERIFIED",
 
                     className:
@@ -1313,12 +1496,17 @@
                 return {
 
                     text:
+
                         "API_REQUEST_" +
+
                         randomNumber() +
+
                         " RESPONSE=200 LATENCY=" +
+
                         Math.floor(
                             Math.random() * 400
                         ) +
+
                         "ms",
 
                     className:
@@ -1332,10 +1520,15 @@
             return {
 
                 text:
+
                     "DEPLOYMENT_NODE_" +
+
                     randomNumber() +
+
                     " BUILD=" +
+
                     randomHex() +
+
                     " STATUS=SUCCESS",
 
                 className:
@@ -1383,6 +1576,11 @@
                 line
             );
 
+
+            /*
+             * Keep the screen filled,
+             * while old lines disappear.
+             */
 
             while (
                 terminal.children.length > 45
@@ -1465,6 +1663,10 @@
 
 
 
+        /* =====================================================
+           SHOW INTRO
+        ===================================================== */
+
         function showIntro() {
 
             if (
@@ -1516,8 +1718,11 @@
 
 
                 addLine(
+
                     generated.text,
+
                     generated.className
+
                 );
 
 
@@ -1525,8 +1730,11 @@
 
 
                 setTimeout(
+
                     startHacking,
+
                     Math.random() * 25 + 12
+
                 );
 
             }
@@ -1542,7 +1750,7 @@
 
 
         /* =====================================================
-           SHUTDOWN
+           SHUTDOWN SEQUENCE
         ===================================================== */
 
         function shutdownSequence() {
@@ -1674,16 +1882,24 @@
         function showFinalScreen() {
 
 
+            /*
+             * Hide terminal.
+             */
+
             terminal.style.display =
                 "none";
 
+
+            /*
+             * Show final screen.
+             */
 
             finalScreen.style.display =
                 "block";
 
 
             /*
-             * 1. Show thank-you.
+             * Show Thank You.
              */
 
             setTimeout(
@@ -1699,7 +1915,7 @@
 
 
             /*
-             * 2. Show photo.
+             * Show Uday photo.
              */
 
             setTimeout(
@@ -1715,7 +1931,7 @@
 
 
             /*
-             * 3. Show final status.
+             * Show final status.
              */
 
             setTimeout(
@@ -1734,7 +1950,7 @@
 
 
         /* =====================================================
-           START
+           START EVERYTHING
         ===================================================== */
 
         showIntro();
